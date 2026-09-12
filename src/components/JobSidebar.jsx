@@ -30,13 +30,22 @@ export default function JobSidebar({
   }, [selectedJobId]);
 
   return (
-    <aside className="flex h-full w-full flex-col gap-4 overflow-hidden bg-radar-bg p-4 lg:p-5">
-      <header className="flex items-center gap-2.5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-radar-accent to-radar-accent2 shadow-glow">
+    <aside className="relative flex h-full w-full flex-col gap-4 overflow-hidden bg-radar-bg p-4 lg:p-5">
+      {/* Contained decorative glow behind the header only — kept inside the
+          sidebar's own bounds so it never fights map/card readability. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-10 -top-16 h-40 w-40 rounded-full bg-radar-accent/20 blur-3xl"
+      />
+
+      <header className="relative flex items-center gap-2.5">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-radar-accent to-radar-accent2 shadow-glow">
           <Satellite size={18} className="text-radar-bg" />
         </div>
         <div>
-          <h1 className="text-base font-bold leading-tight text-slate-50">Ahmedabad Startup Radar</h1>
+          <h1 className="font-display text-lg font-bold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-50 to-slate-300">
+            Ahmedabad Startup Radar
+          </h1>
           <p className="text-[11px] text-radar-muted">Live jobs across the city, mapped in real time</p>
         </div>
       </header>
@@ -69,13 +78,14 @@ export default function JobSidebar({
           </div>
         )}
 
-        {jobs.map((job) => (
+        {jobs.map((job, i) => (
           <JobCard
             key={job.job_id}
             job={job}
             isSelected={job.job_id === selectedJobId}
             onSelect={onSelectJob}
             onApply={onApply}
+            staggerIndex={i}
           />
         ))}
       </div>

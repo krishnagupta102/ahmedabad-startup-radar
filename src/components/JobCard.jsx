@@ -32,19 +32,26 @@ function FallbackAvatar({ name }) {
   );
 }
 
-export default function JobCard({ job, isSelected, onSelect, onApply }) {
+export default function JobCard({ job, isSelected, onSelect, onApply, staggerIndex = 0 }) {
   const salary = formatSalary(job);
 
   return (
     <div
       id={`job-card-${job.job_id}`}
       onClick={() => onSelect(job)}
-      className={`group cursor-pointer rounded-2xl border p-3.5 transition-all ${
+      style={{ animationDelay: `${Math.min(staggerIndex, 12) * 45}ms` }}
+      className={`group relative cursor-pointer overflow-hidden rounded-2xl border p-3.5 animate-fadeUp transition-all duration-200 hover:-translate-y-0.5 ${
         isSelected
           ? 'border-radar-accent/60 bg-radar-accent/[0.07] shadow-glow'
-          : 'border-radar-border bg-radar-card hover:border-slate-500/50'
+          : 'border-radar-border bg-radar-card hover:border-radar-accent/40 hover:shadow-glow'
       }`}
     >
+      <div
+        aria-hidden
+        className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-radar-accent to-radar-accent2 transition-opacity ${
+          isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-70'
+        }`}
+      />
       <div className="flex gap-3">
         <div className="relative">
           <CompanyAvatar job={job} />
@@ -97,7 +104,7 @@ export default function JobCard({ job, isSelected, onSelect, onApply }) {
           e.stopPropagation();
           onApply(job);
         }}
-        className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-radar-accent to-radar-accent2 py-2 text-xs font-semibold text-radar-bg transition-transform hover:scale-[1.01] active:scale-[0.99]"
+        className="asr-shine-btn relative mt-3 flex w-full items-center justify-center gap-1.5 overflow-hidden rounded-lg bg-gradient-to-r from-radar-accent to-radar-accent2 py-2 text-xs font-semibold text-radar-bg transition-transform hover:scale-[1.01] active:scale-[0.99]"
       >
         Apply Now
         <ArrowUpRight size={13} />

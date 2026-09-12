@@ -58,7 +58,7 @@ export default function JobDetailDrawer({ job, onClose }) {
               </div>
             )}
             <div>
-              <h2 className="text-base font-bold text-slate-50">{job.job_title}</h2>
+              <h2 className="font-display text-base font-bold text-slate-50">{job.job_title}</h2>
               <p className="text-sm text-radar-muted">{job.employer_name}</p>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function JobDetailDrawer({ job, onClose }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleSave}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-radar-accent to-radar-accent2 py-3 text-sm font-bold text-radar-bg transition-transform hover:scale-[1.01] active:scale-[0.99]"
+            className="asr-shine-btn relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-radar-accent to-radar-accent2 py-3 text-sm font-bold text-radar-bg transition-transform hover:scale-[1.01] active:scale-[0.99]"
           >
             Apply on Official Site
             <ExternalLink size={15} />

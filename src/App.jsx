@@ -2,11 +2,22 @@ import { useEffect, useMemo, useState, useCallback } from 'react';
 import JobSidebar from './components/JobSidebar';
 import MapCanvas from './components/MapCanvas';
 import JobDetailDrawer from './components/JobDetailDrawer';
+import IntroSplash from './components/IntroSplash';
 import { fetchJobs, applyClientFilters } from './api/jobs';
 
 const DEBOUNCE_MS = 300;
+const INTRO_SESSION_KEY = 'asr-intro-shown';
 
 export default function App() {
+  // Show the radar-globe intro once per browser tab, not on every re-render
+  // or SPA navigation — a fresh tab/reload brings it back.
+  const [showIntro, setShowIntro] = useState(() => {
+    try {
+      return !sessionStorage.getItem(INTRO_SESSION_KEY);
+    } catch {
+      return true; // sessionStorage unavailable (e.g. privacy mode) — just show it once
+    }
+  });
   const [searchInput, setSearchInput] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [filters, setFilters] = useState({ experience: 'all', remoteOnly: false, datePosted: 'week' });
@@ -71,8 +82,18 @@ export default function App() {
 
   const handleRefresh = () => loadJobs(manualDemo);
 
+  const dismissIntro = () => {
+    try {
+      sessionStorage.setItem(INTRO_SESSION_KEY, '1');
+    } catch {
+      // ignore — worst case the intro just replays next load
+    }
+    setShowIntro(false);
+  };
+
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden bg-radar-bg lg:flex-row">
+      {showIntro && <IntroSplash onFinish={dismissIntro} />}
       <div className="h-[45vh] w-full shrink-0 border-b border-radar-border lg:h-full lg:w-[40%] lg:max-w-xl lg:border-b-0 lg:border-r">
         <JobSidebar
           jobs={displayedJobs}
