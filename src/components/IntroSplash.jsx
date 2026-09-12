@@ -57,11 +57,11 @@ export default function IntroSplash({ onFinish }) {
         <div className="flex items-center gap-2 text-radar-muted">
           <Satellite size={14} className="text-radar-accent" />
           <span className="font-display text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-radar-accent via-cyan-200 to-radar-accent2">
-            Ahmedabad Startup Radar
+            Job Hunt Locator
           </span>
         </div>
         <p className="text-xs text-radar-muted">
-          <span className="inline-block animate-pulse">Scanning live job signals across the city…</span>
+          <span className="inline-block animate-pulse">Scanning live job signals…</span>
         </p>
         <div className="mt-1 h-1 w-40 overflow-hidden rounded-full bg-radar-border">
           <div className="h-full w-1/3 animate-[loadBar_1.3s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-radar-accent to-radar-accent2" />

@@ -11,12 +11,7 @@ const ERROR_COPY = {
  * Live-feed status strip at the top of the sidebar. Shows connection state,
  * active listing count, a manual refresh action, and the Live/Demo toggle.
  */
-const SOURCE_LINKS = {
-  remotive: { label: 'Remotive', href: 'https://remotive.com' },
-  jobicy: { label: 'Jobicy', href: 'https://jobicy.com' },
-};
-
-export default function StatusBanner({ source, count, loading, error, onToggleMode, onRefresh, sourcesUsed = [] }) {
+export default function StatusBanner({ source, count, loading, error, onToggleMode, onRefresh }) {
   const isLive = source === 'live';
 
   return (
@@ -38,7 +33,7 @@ export default function StatusBanner({ source, count, loading, error, onToggleMo
               <>
                 <span className="text-radar-live font-medium">Connected to live feed</span>
                 {' · '}
-                <span className="text-slate-200 font-semibold">{count}</span> active listings in Ahmedabad
+                <span className="text-slate-200 font-semibold">{count}</span> active listings
               </>
             ) : (
               <>
@@ -72,25 +67,6 @@ export default function StatusBanner({ source, count, loading, error, onToggleMo
           </button>
         </div>
       </div>
-
-      {isLive && (
-        <p className="px-1 text-[10px] text-radar-muted">
-          Live roles via{' '}
-          {(sourcesUsed.length ? sourcesUsed : ['remotive', 'jobicy']).map((key, i, arr) => {
-            const src = SOURCE_LINKS[key];
-            if (!src) return null;
-            return (
-              <span key={key}>
-                <a href={src.href} target="_blank" rel="noopener noreferrer" className="text-radar-accent hover:underline">
-                  {src.label}
-                </a>
-                {i < arr.length - 1 ? ' + ' : ''}
-              </span>
-            );
-          })}{' '}
-          — free, keyless public job feeds, filtered to roles open to India-based applicants. Not affiliated with LinkedIn, Indeed, or Naukri.
-        </p>
-      )}
     </div>
   );
 }

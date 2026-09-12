@@ -1,4 +1,4 @@
-# 📡 Ahmedabad Startup Radar
+# 📡 Job Hunt Locator
 
 A live, interactive map of startup & tech job openings across Ahmedabad — search jobs, filter by experience/remote/date, and see every listing plotted on the city's real tech hubs (SG Highway, Sindhu Bhavan Road, Prahlad Nagar, Vastrapur, Navrangpura, GIFT City).
 

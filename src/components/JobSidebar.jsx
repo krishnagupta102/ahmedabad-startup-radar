@@ -18,7 +18,6 @@ export default function JobSidebar({
   onApply,
   onToggleMode,
   onRefresh,
-  sourcesUsed,
 }) {
   const listRef = useRef(null);
 
@@ -44,9 +43,9 @@ export default function JobSidebar({
         </div>
         <div>
           <h1 className="font-display text-lg font-bold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-50 to-slate-300">
-            Ahmedabad Startup Radar
+            Job Hunt Locator
           </h1>
-          <p className="text-[11px] text-radar-muted">Live jobs across the city, mapped in real time</p>
+          <p className="text-[11px] text-radar-muted">Live job openings, mapped in real time</p>
         </div>
       </header>
 
@@ -57,7 +56,6 @@ export default function JobSidebar({
         error={error}
         onToggleMode={onToggleMode}
         onRefresh={onRefresh}
-        sourcesUsed={sourcesUsed}
       />
 
       <FilterBar search={search} onSearchChange={onSearchChange} filters={filters} onFilterChange={onFilterChange} />

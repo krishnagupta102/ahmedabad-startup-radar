@@ -59,8 +59,6 @@ export default function App() {
 
   useEffect(() => loadJobs(manualDemo), [manualDemo, loadJobs]);
 
-  const sourcesUsed = useMemo(() => [...new Set(jobs.map((j) => j.job_source))], [jobs]);
-
   const displayedJobs = useMemo(
     () =>
       applyClientFilters(jobs, {
@@ -109,7 +107,6 @@ export default function App() {
           onApply={handleApply}
           onToggleMode={handleToggleMode}
           onRefresh={handleRefresh}
-          sourcesUsed={sourcesUsed}
         />
       </div>
 
