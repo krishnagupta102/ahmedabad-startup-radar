@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-radar-bg text-slate-100 antialiased;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Slim, dark-mode-friendly scrollbars for the sidebar job list */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #1e2a45;
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #2a3a5c;
+}
+
+/* Leaflet dark theme overrides */
+.leaflet-container {
+  background: #0d1424 !important;
+  font-family: 'Inter', ui-sans-serif, sans-serif;
+}
+/* Fake a dark basemap on top of free, keyless standard OSM tiles by
+   inverting + recoloring just the tile layer. Markers/popups live in
+   separate panes so they're untouched by this filter. */
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.88) saturate(0.7);
+}
+.leaflet-popup-content-wrapper {
+  background: #111a2e;
+  color: #e2e8f0;
+  border-radius: 12px;
+  border: 1px solid #1e2a45;
+}
+.leaflet-popup-tip {
+  background: #111a2e;
+}
+.leaflet-popup-content {
+  margin: 12px 14px;
+}
+.leaflet-control-zoom a {
+  background: #111a2e !important;
+  color: #e2e8f0 !important;
+  border-color: #1e2a45 !important;
+}
+.leaflet-control-attribution {
+  background: rgba(13, 20, 36, 0.8) !important;
+  color: #8593b0 !important;
+}
+.leaflet-control-attribution a {
+  color: #22d3ee !important;
+}
+
+.asr-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px 999px 999px 4px;
+  transform: rotate(45deg);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+.asr-pin span {
+  transform: rotate(-45deg);
+  font-weight: 700;
+  font-size: 11px;
+  color: white;
+  letter-spacing: 0.02em;
+}
+.asr-pin.is-selected {
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.35), 0 4px 14px rgba(0, 0, 0, 0.5);
+  transform: rotate(45deg) scale(1.15);
+}
+
+.marker-cluster-custom {
+  background: rgba(34, 211, 238, 0.15);
+  border: 2px solid #22d3ee;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e2fbff;
+  font-weight: 700;
+  font-size: 12px;
+}
